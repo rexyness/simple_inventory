@@ -2,7 +2,7 @@
 ///and objects , use with .path() from firestore without .collection()
 
 class FirestorePath {
-  static String job(String uid, String jobId) => 'users/$uid/jobs/$jobId';
+  static String user(String uid) => 'users/$uid';
   static String jobs(String uid) => 'users/$uid/jobs';
   static String entry(String uid, String entryId) =>
       'users/$uid/entries/$entryId';

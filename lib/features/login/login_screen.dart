@@ -1,30 +1,23 @@
-import 'package:cool_alert/cool_alert.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:simple_inventory/core/loading_screen.dart';
 
+
 import '../../core/constants.dart';
 import '../../core/widgets/primary_button.dart';
 import '../../providers/auth_provider.dart';
-import '../../providers/states/auth_state.dart';
+
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<AuthState>(
-      authProvider,
-      (_, authState) => authState.maybeWhen(
-        orElse: () => null,
-        failed: (reason) async {
-          await CoolAlert.show(context: context, text: reason, type: CoolAlertType.error);
-          return;
-        },
-      ),
-    );
+   
     // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
     return ref.watch(authProvider).maybeWhen(orElse: () {

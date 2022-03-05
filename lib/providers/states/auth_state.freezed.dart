@@ -26,9 +26,11 @@ class _$AuthStateTearOff {
     return const AUTHENTICATING();
   }
 
-  AUTHENTICATED authenticated({required String fullName}) {
+  AUTHENTICATED authenticated(
+      {required String fullName, required role userRole}) {
     return AUTHENTICATED(
       fullName: fullName,
+      userRole: userRole,
     );
   }
 
@@ -48,7 +50,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthenticated,
     required TResult Function() authenticating,
-    required TResult Function(String fullName) authenticated,
+    required TResult Function(String fullName, role userRole) authenticated,
     required TResult Function(String reason) failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +58,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +66,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
     required TResult orElse(),
   }) =>
@@ -153,7 +155,7 @@ class _$UNAUTHENTICATED implements UNAUTHENTICATED {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthenticated,
     required TResult Function() authenticating,
-    required TResult Function(String fullName) authenticated,
+    required TResult Function(String fullName, role userRole) authenticated,
     required TResult Function(String reason) failed,
   }) {
     return unauthenticated();
@@ -164,7 +166,7 @@ class _$UNAUTHENTICATED implements UNAUTHENTICATED {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
   }) {
     return unauthenticated?.call();
@@ -175,7 +177,7 @@ class _$UNAUTHENTICATED implements UNAUTHENTICATED {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
     required TResult orElse(),
   }) {
@@ -269,7 +271,7 @@ class _$AUTHENTICATING implements AUTHENTICATING {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthenticated,
     required TResult Function() authenticating,
-    required TResult Function(String fullName) authenticated,
+    required TResult Function(String fullName, role userRole) authenticated,
     required TResult Function(String reason) failed,
   }) {
     return authenticating();
@@ -280,7 +282,7 @@ class _$AUTHENTICATING implements AUTHENTICATING {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
   }) {
     return authenticating?.call();
@@ -291,7 +293,7 @@ class _$AUTHENTICATING implements AUTHENTICATING {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
     required TResult orElse(),
   }) {
@@ -348,7 +350,7 @@ abstract class $AUTHENTICATEDCopyWith<$Res> {
   factory $AUTHENTICATEDCopyWith(
           AUTHENTICATED value, $Res Function(AUTHENTICATED) then) =
       _$AUTHENTICATEDCopyWithImpl<$Res>;
-  $Res call({String fullName});
+  $Res call({String fullName, role userRole});
 }
 
 /// @nodoc
@@ -364,12 +366,17 @@ class _$AUTHENTICATEDCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? fullName = freezed,
+    Object? userRole = freezed,
   }) {
     return _then(AUTHENTICATED(
       fullName: fullName == freezed
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
+      userRole: userRole == freezed
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as role,
     ));
   }
 }
@@ -377,14 +384,16 @@ class _$AUTHENTICATEDCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AUTHENTICATED implements AUTHENTICATED {
-  const _$AUTHENTICATED({required this.fullName});
+  const _$AUTHENTICATED({required this.fullName, required this.userRole});
 
   @override
   final String fullName;
+  @override
+  final role userRole;
 
   @override
   String toString() {
-    return 'AuthState.authenticated(fullName: $fullName)';
+    return 'AuthState.authenticated(fullName: $fullName, userRole: $userRole)';
   }
 
   @override
@@ -392,12 +401,15 @@ class _$AUTHENTICATED implements AUTHENTICATED {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is AUTHENTICATED &&
-            const DeepCollectionEquality().equals(other.fullName, fullName));
+            const DeepCollectionEquality().equals(other.fullName, fullName) &&
+            const DeepCollectionEquality().equals(other.userRole, userRole));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(fullName));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(fullName),
+      const DeepCollectionEquality().hash(userRole));
 
   @JsonKey(ignore: true)
   @override
@@ -409,10 +421,10 @@ class _$AUTHENTICATED implements AUTHENTICATED {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthenticated,
     required TResult Function() authenticating,
-    required TResult Function(String fullName) authenticated,
+    required TResult Function(String fullName, role userRole) authenticated,
     required TResult Function(String reason) failed,
   }) {
-    return authenticated(fullName);
+    return authenticated(fullName, userRole);
   }
 
   @override
@@ -420,10 +432,10 @@ class _$AUTHENTICATED implements AUTHENTICATED {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
   }) {
-    return authenticated?.call(fullName);
+    return authenticated?.call(fullName, userRole);
   }
 
   @override
@@ -431,12 +443,12 @@ class _$AUTHENTICATED implements AUTHENTICATED {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated(fullName);
+      return authenticated(fullName, userRole);
     }
     return orElse();
   }
@@ -480,9 +492,11 @@ class _$AUTHENTICATED implements AUTHENTICATED {
 }
 
 abstract class AUTHENTICATED implements AuthState {
-  const factory AUTHENTICATED({required String fullName}) = _$AUTHENTICATED;
+  const factory AUTHENTICATED(
+      {required String fullName, required role userRole}) = _$AUTHENTICATED;
 
   String get fullName;
+  role get userRole;
   @JsonKey(ignore: true)
   $AUTHENTICATEDCopyWith<AUTHENTICATED> get copyWith =>
       throw _privateConstructorUsedError;
@@ -552,7 +566,7 @@ class _$FAILED implements FAILED {
   TResult when<TResult extends Object?>({
     required TResult Function() unauthenticated,
     required TResult Function() authenticating,
-    required TResult Function(String fullName) authenticated,
+    required TResult Function(String fullName, role userRole) authenticated,
     required TResult Function(String reason) failed,
   }) {
     return failed(reason);
@@ -563,7 +577,7 @@ class _$FAILED implements FAILED {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
   }) {
     return failed?.call(reason);
@@ -574,7 +588,7 @@ class _$FAILED implements FAILED {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unauthenticated,
     TResult Function()? authenticating,
-    TResult Function(String fullName)? authenticated,
+    TResult Function(String fullName, role userRole)? authenticated,
     TResult Function(String reason)? failed,
     required TResult orElse(),
   }) {

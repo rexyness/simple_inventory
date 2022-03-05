@@ -1,13 +1,11 @@
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_inventory/core/widgets/primary_button.dart';
 import 'package:simple_inventory/features/login/login_screen.dart';
 import 'package:simple_inventory/providers/auth_provider.dart';
 import 'package:simple_inventory/providers/states/auth_state.dart';
-import 'package:simple_inventory/providers/top_level_providers.dart';
-
-import 'core/widgets/error_content.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AuthWidget extends ConsumerWidget {
   const AuthWidget({Key? key}) : super(key: key);
@@ -18,50 +16,42 @@ class AuthWidget extends ConsumerWidget {
       authProvider,
       (_, authState) => authState.maybeWhen(
         orElse: () => null,
-        authenticated: (name) async {
-          print(name);
-          await CoolAlert.show(context: context, text: 'Hello , $name', type: CoolAlertType.success);
+        failed: (reason) async {
+          showTopSnackBar(
+            context,
+            CustomSnackBar.error(
+              message: reason,
+              
+            ),
+          );
+          return;
+          
+        },
+        authenticated: (name, userRole) {
+          showTopSnackBar(
+            context,
+            CustomSnackBar.success(
+              message: "Hello $name , Welcome Aboard !",
+              backgroundColor: (Colors.blue[300])!,
+            ),
+          );
           return;
         },
       ),
     );
-    return ref.watch(authStateChangesProvider).when(
-          data: (user) {
-            return user == null ? const LoginScreen() : const HomeScreen();
-          },
-          loading: () => const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          ),
-          error: (_, __) => const Scaffold(
-            body: EmptyContent(
-              title: 'Something went wrong',
-              message: 'Can\'t load data right now. Please exit the app',
-            ),
-          ),
-        );
-    // return ref.watch(authProvider).maybeMap(
-    //     orElse: () => const LoginScreen(),
-    //     authenticated: (a) {
-    //       a.fullName;
-    //       return Scaffold(
-    //         body: Center(
-    //           child: PrimaryButton(
-    //             onPressed: () async {
-    //               await ref.read(authProvider.notifier).logout();
-    //             },
-    //             text: "Log Out",
-    //           ),
-    //         ),
-    //       );
-    //     });
+    return ref.watch(authProvider).maybeWhen(
+        orElse: () => const LoginScreen(),
+        authenticated: (name, userRole) => HomeScreen(name: name, userRole: userRole));
   }
 }
 
 class HomeScreen extends ConsumerWidget {
+  final String name;
+  final role userRole;
   const HomeScreen({
     Key? key,
+    required this.name,
+    required this.userRole,
   }) : super(key: key);
 
   @override
@@ -75,6 +65,6 @@ class HomeScreen extends ConsumerWidget {
           text: "Log Out",
         ),
       ),
-    );
+    ); //
   }
 }
