@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_inventory/providers/states/auth_state.dart';
 import 'package:simple_inventory/providers/top_level_providers.dart';
@@ -35,20 +36,32 @@ class AuthProvider extends StateNotifier<AuthState> {
   }
 
   Future<void> init() async {
-    
-    if (_currentUser.asData?.value == null) {
-      state = const AuthState.unauthenticated();
-      return;
-    }
-    // .....
-    final x = await _firestoreDatabase.getNameAndRole();
-    if (x.x == role.none) {
-      if (mounted) state = const AuthState.failed(reason: "Account suspended");
-      await _firebaseAuth.signOut();
-      return;
-    }
-    if (mounted) state = AuthState.authenticated(fullName: x.name, userRole: x.x);
-    return;
+    _currentUser.maybeWhen(
+        orElse: () {},
+        data: (user) async {
+          if (user == null) {
+          FlutterNativeSplash.remove();
+            state = const AuthState.unauthenticated();
+            return;
+          }
+          final x = await _firestoreDatabase.getNameAndRole();
+          if (x.x == role.none) {
+            if (mounted) state = const AuthState.failed(reason: "Account suspended");
+            await _firebaseAuth.signOut();
+            return;
+          }
+          if (mounted) state = AuthState.authenticated(fullName: x.name, userRole: x.x);
+          return;
+        });
+
+    // final x = await _firestoreDatabase.getNameAndRole();
+    // if (x.x == role.none) {
+    //   if (mounted) state = const AuthState.failed(reason: "Account suspended");
+    //   await _firebaseAuth.signOut();
+    //   return;
+    // }
+    // if (mounted) state = AuthState.authenticated(fullName: x.name, userRole: x.x);
+    // return;
   }
 
   Future<void> login(String email, String password) async {
