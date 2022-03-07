@@ -22,10 +22,12 @@ UserFirestore _$UserFirestoreFromJson(Map<String, dynamic> json) {
 class _$UserFirestoreTearOff {
   const _$UserFirestoreTearOff();
 
-  _UserFirestore call(String name, @JsonKey(name: 'role') role userRole) {
+  _UserFirestore call(
+      String name, @JsonKey(name: 'role') role userRole, String id) {
     return _UserFirestore(
       name,
       userRole,
+      id,
     );
   }
 
@@ -42,6 +44,7 @@ mixin _$UserFirestore {
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'role')
   role get userRole => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +57,7 @@ abstract class $UserFirestoreCopyWith<$Res> {
   factory $UserFirestoreCopyWith(
           UserFirestore value, $Res Function(UserFirestore) then) =
       _$UserFirestoreCopyWithImpl<$Res>;
-  $Res call({String name, @JsonKey(name: 'role') role userRole});
+  $Res call({String name, @JsonKey(name: 'role') role userRole, String id});
 }
 
 /// @nodoc
@@ -70,6 +73,7 @@ class _$UserFirestoreCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? userRole = freezed,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -80,6 +84,10 @@ class _$UserFirestoreCopyWithImpl<$Res>
           ? _value.userRole
           : userRole // ignore: cast_nullable_to_non_nullable
               as role,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -91,7 +99,7 @@ abstract class _$UserFirestoreCopyWith<$Res>
           _UserFirestore value, $Res Function(_UserFirestore) then) =
       __$UserFirestoreCopyWithImpl<$Res>;
   @override
-  $Res call({String name, @JsonKey(name: 'role') role userRole});
+  $Res call({String name, @JsonKey(name: 'role') role userRole, String id});
 }
 
 /// @nodoc
@@ -109,6 +117,7 @@ class __$UserFirestoreCopyWithImpl<$Res>
   $Res call({
     Object? name = freezed,
     Object? userRole = freezed,
+    Object? id = freezed,
   }) {
     return _then(_UserFirestore(
       name == freezed
@@ -119,6 +128,10 @@ class __$UserFirestoreCopyWithImpl<$Res>
           ? _value.userRole
           : userRole // ignore: cast_nullable_to_non_nullable
               as role,
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -126,7 +139,8 @@ class __$UserFirestoreCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserFirestore extends _UserFirestore {
-  const _$_UserFirestore(this.name, @JsonKey(name: 'role') this.userRole)
+  const _$_UserFirestore(
+      this.name, @JsonKey(name: 'role') this.userRole, this.id)
       : super._();
 
   factory _$_UserFirestore.fromJson(Map<String, dynamic> json) =>
@@ -137,10 +151,12 @@ class _$_UserFirestore extends _UserFirestore {
   @override
   @JsonKey(name: 'role')
   final role userRole;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'UserFirestore(name: $name, userRole: $userRole)';
+    return 'UserFirestore(name: $name, userRole: $userRole, id: $id)';
   }
 
   @override
@@ -149,14 +165,16 @@ class _$_UserFirestore extends _UserFirestore {
         (other.runtimeType == runtimeType &&
             other is _UserFirestore &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.userRole, userRole));
+            const DeepCollectionEquality().equals(other.userRole, userRole) &&
+            const DeepCollectionEquality().equals(other.id, id));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(userRole));
+      const DeepCollectionEquality().hash(userRole),
+      const DeepCollectionEquality().hash(id));
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +189,8 @@ class _$_UserFirestore extends _UserFirestore {
 
 abstract class _UserFirestore extends UserFirestore {
   const factory _UserFirestore(
-      String name, @JsonKey(name: 'role') role userRole) = _$_UserFirestore;
+          String name, @JsonKey(name: 'role') role userRole, String id) =
+      _$_UserFirestore;
   const _UserFirestore._() : super._();
 
   factory _UserFirestore.fromJson(Map<String, dynamic> json) =
@@ -182,6 +201,8 @@ abstract class _UserFirestore extends UserFirestore {
   @override
   @JsonKey(name: 'role')
   role get userRole;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$UserFirestoreCopyWith<_UserFirestore> get copyWith =>

@@ -48,6 +48,7 @@ dependencies:
   flutter_native_splash: ^2.1.0
   json_annotation: ^4.4.0
   form_validator: ^1.0.2
+  group_button: ^4.6.0
 
 dev_dependencies:
   flutter_test:

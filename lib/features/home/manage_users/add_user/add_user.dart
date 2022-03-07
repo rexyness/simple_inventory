@@ -11,7 +11,7 @@ import 'package:simple_inventory/providers/add_user_provider.dart';
 import 'package:simple_inventory/providers/auth_provider.dart';
 import 'package:simple_inventory/providers/states/add_new_user_state.dart';
 import 'package:simple_inventory/providers/top_level_providers.dart';
-
+import 'package:group_button/group_button.dart';
 import '../../../../theme/palette.dart';
 
 class AddUser extends HookConsumerWidget {
@@ -25,6 +25,7 @@ class AddUser extends HookConsumerWidget {
     final confirmEmailController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
     final confirmPasswordController = useTextEditingController(text: '');
+    final userRole = useState(role.supervisor);
     final isObscure = useState(true);
 
     return ScaffoldGradient(
@@ -234,9 +235,20 @@ class AddUser extends HookConsumerWidget {
                             ),
                           ),
                           const ResponsiveRowColumnItem(
-                              child: SizedBox(
-                            width: double.infinity,
-                          )),
+                            child: SizedBox(
+                              width: double.infinity,
+                            ),
+                          ),
+                          ResponsiveRowColumnItem(
+                              child: GroupButton(
+                            isRadio: true,
+                            
+                            onSelected: (index, isSelected) {
+                              if (index == 0) userRole.value = role.supervisor;
+                              if (index == 1) userRole.value = role.staff;
+                            },
+                            buttons: const ["Supervisor", "Staff"],
+                          ),),
                           ResponsiveRowColumnItem(
                             child: PrimaryButton(
                               onPressed: () async {
@@ -248,7 +260,7 @@ class AddUser extends HookConsumerWidget {
                                           emailController.value.text.toString().trim(),
                                           passwordController.value.text.toString().trim(),
                                           nameController.value.text.toString().trim(),
-                                          role.staff,
+                                          userRole.value,
                                         );
                                     ref.read(addUserProvider.state).state = const AddNewUserState.sucess();
                                     await ref.read(authProvider.notifier).logout();

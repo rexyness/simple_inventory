@@ -12,6 +12,7 @@ class UserFirestore with _$UserFirestore {
   const factory UserFirestore(
     String name,
     @JsonKey(name: 'role') role userRole,
+    String id,
   ) = _UserFirestore;
 
   /// Connect the generated [_$UserFirestoreFromJson] function to the `fromJson`
