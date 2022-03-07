@@ -11,4 +11,7 @@ class Palette {
   static const Color red700 = Color(0xff800d1b);
   static const Color red800 = Color(0xff4d0810);
   static const Color red900 = Color(0xff1a0305);
+  static const Color gradientPurple = Color.fromRGBO(51, 0, 51, 1.0);
+  static const Color gradientBlue = Color.fromRGBO(51, 51, 153, 1.0);
+  static const List<Color> backgroundGradient = [gradientPurple, gradientBlue];
 }

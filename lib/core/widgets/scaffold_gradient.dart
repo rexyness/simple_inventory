@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_inventory/theme/palette.dart';
 
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({Key? key}) : super(key: key);
+import '../../theme/palette.dart';
+
+class ScaffoldGradient extends StatelessWidget {
+  final Scaffold child;
+  const ScaffoldGradient({Key? key , required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,7 @@ class LoadingScreen extends StatelessWidget {
           colors: Palette.backgroundGradient,
         ),
       ),
-      child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.transparent,),
-        body: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      child: child,
     );
   }
 }

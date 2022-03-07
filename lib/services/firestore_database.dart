@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:simple_inventory/core/failure.dart';
 
 import '../providers/auth_provider.dart';
 import 'firestore_path.dart';
@@ -43,6 +45,18 @@ class FirestoreDatabase {
   final String uid;
 
   final _service = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+
+  Future<void> addNewUser(String email, String password, String name, role userRole) async {
+    try {
+      final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _service.doc(FirestorePath.user(newUser.user!.uid)).set({'name': name, 'role': userRole.name.toString()});
+    } on FirebaseAuthException catch (e) {
+      throw Failure(message: e.message ?? 'Failed at Fireauth');
+    } catch (e) {
+       throw Failure(message: 'Failed at at firestore');
+    }
+  }
 
   Future<NameRole> getNameAndRole() async {
     log('Begin getNameRole for $uid');

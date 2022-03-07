@@ -13,10 +13,12 @@ class AuthWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    
     ref.listen<AuthState>(
       authProvider,
       (_, authState) => authState.maybeWhen(
         orElse: () => null,
+        
         failed: (reason) async {
           showTopSnackBar(
             context,

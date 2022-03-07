@@ -10,6 +10,7 @@ class CustomTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.dark,
+        
         primarySwatch: MaterialColor(
           Palette.red500.value,
           const {
@@ -26,7 +27,7 @@ class CustomTheme {
         ),
         accentColor: Palette.red500,
       ),
-      scaffoldBackgroundColor: HexColor.fromHex("#1E1E20"),
+      scaffoldBackgroundColor: Colors.transparent,
       cardTheme: const CardTheme(color: Palette.red500),
       appBarTheme: AppBarTheme(
         elevation: 0,

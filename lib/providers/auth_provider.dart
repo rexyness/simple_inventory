@@ -50,7 +50,9 @@ class AuthProvider extends StateNotifier<AuthState> {
             await _firebaseAuth.signOut();
             return;
           }
-          if (mounted) state = AuthState.authenticated(fullName: x.name, userRole: x.x);
+          if (mounted) {
+            state = AuthState.authenticated(fullName: x.name, userRole: x.x);
+          }
           return;
         });
 
@@ -74,6 +76,7 @@ class AuthProvider extends StateNotifier<AuthState> {
   }
 
   Future<void> logout() async {
+    if (mounted) state = const AuthState.authenticating();
     await _firebaseAuth.signOut();
     if (mounted) state = const AuthState.unauthenticated();
   }
