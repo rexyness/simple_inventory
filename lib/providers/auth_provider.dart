@@ -39,8 +39,8 @@ class AuthProvider extends StateNotifier<AuthState> {
     _currentUser.maybeWhen(
         orElse: () {},
         data: (user) async {
-          if (user == null) {
           FlutterNativeSplash.remove();
+          if (user == null) {
             state = const AuthState.unauthenticated();
             return;
           }
