@@ -25,7 +25,7 @@ class AddUser extends HookConsumerWidget {
     final confirmEmailController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
     final confirmPasswordController = useTextEditingController(text: '');
-    final userRole = useState(role.supervisor);
+    final userRole = useState(role.staff);
     final isObscure = useState(true);
 
 
@@ -151,7 +151,7 @@ class AddUser extends HookConsumerWidget {
                                 keyboardType: TextInputType.emailAddress,
                                 controller: confirmEmailController,
                                 validator: (_) {
-                                  if (confirmEmailController.value != emailController.value) return 'Email mismatch';
+                                  if (confirmEmailController.value.text.trim() != emailController.value.text.trim()) return 'Email mismatch';
                                   return null;
                                 },
                                 decoration: const InputDecoration(
