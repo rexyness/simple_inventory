@@ -22,6 +22,10 @@ class _$AddNewUserStateTearOff {
     return const IDLE();
   }
 
+  LOADING loading() {
+    return const LOADING();
+  }
+
   SUCESS sucess() {
     return const SUCESS();
   }
@@ -41,6 +45,7 @@ mixin _$AddNewUserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() sucess,
     required TResult Function(String reason) failed,
   }) =>
@@ -48,6 +53,7 @@ mixin _$AddNewUserState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
   }) =>
@@ -55,6 +61,7 @@ mixin _$AddNewUserState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
     required TResult orElse(),
@@ -63,6 +70,7 @@ mixin _$AddNewUserState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IDLE value) idle,
+    required TResult Function(LOADING value) loading,
     required TResult Function(SUCESS value) sucess,
     required TResult Function(FAILED value) failed,
   }) =>
@@ -70,6 +78,7 @@ mixin _$AddNewUserState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
   }) =>
@@ -77,6 +86,7 @@ mixin _$AddNewUserState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
     required TResult orElse(),
@@ -140,6 +150,7 @@ class _$IDLE implements IDLE {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() sucess,
     required TResult Function(String reason) failed,
   }) {
@@ -150,6 +161,7 @@ class _$IDLE implements IDLE {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
   }) {
@@ -160,6 +172,7 @@ class _$IDLE implements IDLE {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
     required TResult orElse(),
@@ -174,6 +187,7 @@ class _$IDLE implements IDLE {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IDLE value) idle,
+    required TResult Function(LOADING value) loading,
     required TResult Function(SUCESS value) sucess,
     required TResult Function(FAILED value) failed,
   }) {
@@ -184,6 +198,7 @@ class _$IDLE implements IDLE {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
   }) {
@@ -194,6 +209,7 @@ class _$IDLE implements IDLE {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
     required TResult orElse(),
@@ -207,6 +223,120 @@ class _$IDLE implements IDLE {
 
 abstract class IDLE implements AddNewUserState {
   const factory IDLE() = _$IDLE;
+}
+
+/// @nodoc
+abstract class $LOADINGCopyWith<$Res> {
+  factory $LOADINGCopyWith(LOADING value, $Res Function(LOADING) then) =
+      _$LOADINGCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LOADINGCopyWithImpl<$Res> extends _$AddNewUserStateCopyWithImpl<$Res>
+    implements $LOADINGCopyWith<$Res> {
+  _$LOADINGCopyWithImpl(LOADING _value, $Res Function(LOADING) _then)
+      : super(_value, (v) => _then(v as LOADING));
+
+  @override
+  LOADING get _value => super._value as LOADING;
+}
+
+/// @nodoc
+
+class _$LOADING implements LOADING {
+  const _$LOADING();
+
+  @override
+  String toString() {
+    return 'AddNewUserState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is LOADING);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() loading,
+    required TResult Function() sucess,
+    required TResult Function(String reason) failed,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? sucess,
+    TResult Function(String reason)? failed,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? loading,
+    TResult Function()? sucess,
+    TResult Function(String reason)? failed,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(IDLE value) idle,
+    required TResult Function(LOADING value) loading,
+    required TResult Function(SUCESS value) sucess,
+    required TResult Function(FAILED value) failed,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
+    TResult Function(SUCESS value)? sucess,
+    TResult Function(FAILED value)? failed,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
+    TResult Function(SUCESS value)? sucess,
+    TResult Function(FAILED value)? failed,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LOADING implements AddNewUserState {
+  const factory LOADING() = _$LOADING;
 }
 
 /// @nodoc
@@ -248,6 +378,7 @@ class _$SUCESS implements SUCESS {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() sucess,
     required TResult Function(String reason) failed,
   }) {
@@ -258,6 +389,7 @@ class _$SUCESS implements SUCESS {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
   }) {
@@ -268,6 +400,7 @@ class _$SUCESS implements SUCESS {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
     required TResult orElse(),
@@ -282,6 +415,7 @@ class _$SUCESS implements SUCESS {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IDLE value) idle,
+    required TResult Function(LOADING value) loading,
     required TResult Function(SUCESS value) sucess,
     required TResult Function(FAILED value) failed,
   }) {
@@ -292,6 +426,7 @@ class _$SUCESS implements SUCESS {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
   }) {
@@ -302,6 +437,7 @@ class _$SUCESS implements SUCESS {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
     required TResult orElse(),
@@ -380,6 +516,7 @@ class _$FAILED implements FAILED {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
+    required TResult Function() loading,
     required TResult Function() sucess,
     required TResult Function(String reason) failed,
   }) {
@@ -390,6 +527,7 @@ class _$FAILED implements FAILED {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
   }) {
@@ -400,6 +538,7 @@ class _$FAILED implements FAILED {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
+    TResult Function()? loading,
     TResult Function()? sucess,
     TResult Function(String reason)? failed,
     required TResult orElse(),
@@ -414,6 +553,7 @@ class _$FAILED implements FAILED {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(IDLE value) idle,
+    required TResult Function(LOADING value) loading,
     required TResult Function(SUCESS value) sucess,
     required TResult Function(FAILED value) failed,
   }) {
@@ -424,6 +564,7 @@ class _$FAILED implements FAILED {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
   }) {
@@ -434,6 +575,7 @@ class _$FAILED implements FAILED {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(IDLE value)? idle,
+    TResult Function(LOADING value)? loading,
     TResult Function(SUCESS value)? sucess,
     TResult Function(FAILED value)? failed,
     required TResult orElse(),

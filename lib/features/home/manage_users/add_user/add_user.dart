@@ -28,7 +28,6 @@ class AddUser extends HookConsumerWidget {
     final userRole = useState(role.staff);
     final isObscure = useState(true);
 
-
     return ScaffoldGradient(
       child: Scaffold(
         appBar: AppBar(
@@ -113,8 +112,8 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('emailFormField'),
-                                 keyboardType: TextInputType.emailAddress,
-                                 textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
                                 validator: ValidationBuilder().email().build(),
                                 controller: emailController,
                                 decoration: const InputDecoration(
@@ -151,7 +150,8 @@ class AddUser extends HookConsumerWidget {
                                 keyboardType: TextInputType.emailAddress,
                                 controller: confirmEmailController,
                                 validator: (_) {
-                                  if (confirmEmailController.value.text.trim() != emailController.value.text.trim()) return 'Email mismatch';
+                                  if (confirmEmailController.value.text.trim() != emailController.value.text.trim())
+                                    return 'Email mismatch';
                                   return null;
                                 },
                                 decoration: const InputDecoration(
@@ -184,8 +184,8 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('passwordFormField'),
-                                 keyboardType: TextInputType.visiblePassword,
-                                 textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.next,
                                 controller: passwordController,
                                 obscureText: isObscure.value,
                                 validator: ValidationBuilder().required().build(),
@@ -253,9 +253,7 @@ class AddUser extends HookConsumerWidget {
                           ResponsiveRowColumnItem(
                             child: GroupButton(
                               isRadio: true,
-                              
                               onSelected: (index, isSelected) {
-                                
                                 if (index == 0) userRole.value = role.supervisor;
                                 if (index == 1) userRole.value = role.staff;
                               },
@@ -269,6 +267,7 @@ class AddUser extends HookConsumerWidget {
                                 // Validate returns true if the form is valid, or false otherwise.
                                 if (formKey.currentState!.validate()) {
                                   try {
+                                    ref.read(addUserProvider.state).state = const AddNewUserState.loading();
                                     await ref.read(databaseProvider)!.addNewUser(
                                           emailController.value.text.trim(),
                                           passwordController.value.text.trim(),
@@ -284,6 +283,11 @@ class AddUser extends HookConsumerWidget {
                                   }
                                 }
                               },
+                              isLoading: ref.watch(addUserProvider).maybeWhen(orElse: () {
+                                return false;
+                              }, loading: () {
+                                return true;
+                              }),
                               text: 'Confirm',
                               width: ResponsiveValue(
                                 context,

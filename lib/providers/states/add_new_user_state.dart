@@ -7,6 +7,8 @@ part 'add_new_user_state.freezed.dart';
 class AddNewUserState with _$AddNewUserState {
 
   const factory AddNewUserState.idle() = IDLE;
+  
+  const factory AddNewUserState.loading() = LOADING;
 
   const factory AddNewUserState.sucess() = SUCESS;
 
