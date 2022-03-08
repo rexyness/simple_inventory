@@ -80,6 +80,7 @@ class AddUser extends HookConsumerWidget {
                               child: TextFormField(
                                 keyboardType: TextInputType.name,
                                 key: const ValueKey('nameFormField'),
+                                textInputAction: TextInputAction.next,
                                 validator: ValidationBuilder().required().build(),
                                 controller: nameController,
                                 decoration: const InputDecoration(
@@ -113,6 +114,7 @@ class AddUser extends HookConsumerWidget {
                               child: TextFormField(
                                 key: const ValueKey('emailFormField'),
                                  keyboardType: TextInputType.emailAddress,
+                                 textInputAction: TextInputAction.next,
                                 validator: ValidationBuilder().email().build(),
                                 controller: emailController,
                                 decoration: const InputDecoration(
@@ -145,6 +147,7 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('confrimEmailFormField'),
+                                textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.emailAddress,
                                 controller: confirmEmailController,
                                 validator: (_) {
@@ -182,6 +185,7 @@ class AddUser extends HookConsumerWidget {
                               child: TextFormField(
                                 key: const ValueKey('passwordFormField'),
                                  keyboardType: TextInputType.visiblePassword,
+                                 textInputAction: TextInputAction.next,
                                 controller: passwordController,
                                 obscureText: isObscure.value,
                                 validator: ValidationBuilder().required().build(),
@@ -218,6 +222,7 @@ class AddUser extends HookConsumerWidget {
                               child: TextFormField(
                                 key: const ValueKey('passwordFormField'),
                                 keyboardType: TextInputType.visiblePassword,
+                                textInputAction: TextInputAction.done,
                                 controller: confirmPasswordController,
                                 obscureText: isObscure.value,
                                 validator: (_) {
