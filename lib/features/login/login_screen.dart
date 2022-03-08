@@ -32,7 +32,6 @@ class AuthenticationBody extends HookConsumerWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final emailController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
-    final focus = useFocusNode();
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

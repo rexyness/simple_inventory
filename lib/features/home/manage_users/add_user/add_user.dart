@@ -150,8 +150,9 @@ class AddUser extends HookConsumerWidget {
                                 keyboardType: TextInputType.emailAddress,
                                 controller: confirmEmailController,
                                 validator: (_) {
-                                  if (confirmEmailController.value.text.trim() != emailController.value.text.trim())
+                                  if (confirmEmailController.value.text.trim() != emailController.value.text.trim()) {
                                     return 'Email mismatch';
+                                  }
                                   return null;
                                 },
                                 decoration: const InputDecoration(

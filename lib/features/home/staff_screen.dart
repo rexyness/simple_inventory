@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:simple_inventory/core/constants.dart';
 import 'package:simple_inventory/core/widgets/glass_box.dart';
 import 'package:simple_inventory/core/widgets/scaffold_gradient.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
