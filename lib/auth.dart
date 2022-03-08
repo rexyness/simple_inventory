@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:simple_inventory/features/home/home.dart';
@@ -13,7 +14,7 @@ class AuthWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
+    FlutterNativeSplash.remove();
     ref.listen<AuthState>(
       authProvider,
       (_, authState) => authState.maybeWhen(

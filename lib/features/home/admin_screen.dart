@@ -5,6 +5,8 @@ import 'package:simple_inventory/core/widgets/glass_box.dart';
 import 'package:simple_inventory/features/home/manage_users/manage_users.dart';
 import 'package:simple_inventory/providers/auth_provider.dart';
 import 'package:simple_inventory/theme/palette.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AdminScreen extends ConsumerWidget {
   const AdminScreen({Key? key}) : super(key: key);
@@ -61,7 +63,15 @@ class AdminScreen extends ConsumerWidget {
                   ),
                 ),
                 GlassBox(
-                  onTap: () {},
+                  onTap: () async {
+                    showTopSnackBar(
+                      context,
+                      const CustomSnackBar.error(
+                        message: 'This feature is not implemented yet.',
+                      ),
+                    );
+                    return;
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -28,6 +28,7 @@ class AddUser extends HookConsumerWidget {
     final userRole = useState(role.supervisor);
     final isObscure = useState(true);
 
+
     return ScaffoldGradient(
       child: Scaffold(
         appBar: AppBar(
@@ -77,6 +78,7 @@ class AddUser extends HookConsumerWidget {
                                 ],
                               ).value!.toDouble(),
                               child: TextFormField(
+                                keyboardType: TextInputType.name,
                                 key: const ValueKey('nameFormField'),
                                 validator: ValidationBuilder().required().build(),
                                 controller: nameController,
@@ -110,6 +112,7 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('emailFormField'),
+                                 keyboardType: TextInputType.emailAddress,
                                 validator: ValidationBuilder().email().build(),
                                 controller: emailController,
                                 decoration: const InputDecoration(
@@ -142,6 +145,7 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('confrimEmailFormField'),
+                                keyboardType: TextInputType.emailAddress,
                                 controller: confirmEmailController,
                                 validator: (_) {
                                   if (confirmEmailController.value != emailController.value) return 'Email mismatch';
@@ -177,6 +181,7 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('passwordFormField'),
+                                 keyboardType: TextInputType.visiblePassword,
                                 controller: passwordController,
                                 obscureText: isObscure.value,
                                 validator: ValidationBuilder().required().build(),
@@ -212,6 +217,7 @@ class AddUser extends HookConsumerWidget {
                               ).value!.toDouble(),
                               child: TextFormField(
                                 key: const ValueKey('passwordFormField'),
+                                keyboardType: TextInputType.visiblePassword,
                                 controller: confirmPasswordController,
                                 obscureText: isObscure.value,
                                 validator: (_) {
@@ -240,15 +246,17 @@ class AddUser extends HookConsumerWidget {
                             ),
                           ),
                           ResponsiveRowColumnItem(
-                              child: GroupButton(
-                            isRadio: true,
-                            
-                            onSelected: (index, isSelected) {
-                              if (index == 0) userRole.value = role.supervisor;
-                              if (index == 1) userRole.value = role.staff;
-                            },
-                            buttons: const ["Supervisor", "Staff"],
-                          ),),
+                            child: GroupButton(
+                              isRadio: true,
+                              
+                              onSelected: (index, isSelected) {
+                                
+                                if (index == 0) userRole.value = role.supervisor;
+                                if (index == 1) userRole.value = role.staff;
+                              },
+                              buttons: const ["Supervisor", "Staff"],
+                            ),
+                          ),
                           ResponsiveRowColumnItem(
                             child: PrimaryButton(
                               onPressed: () async {
