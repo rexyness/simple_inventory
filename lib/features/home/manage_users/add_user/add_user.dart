@@ -265,9 +265,9 @@ class AddUser extends HookConsumerWidget {
                                 if (formKey.currentState!.validate()) {
                                   try {
                                     await ref.read(databaseProvider)!.addNewUser(
-                                          emailController.value.text.toString().trim(),
-                                          passwordController.value.text.toString().trim(),
-                                          nameController.value.text.toString().trim(),
+                                          emailController.value.text.trim(),
+                                          passwordController.value.text.trim(),
+                                          nameController.value.text.trim(),
                                           userRole.value,
                                         );
                                     ref.read(addUserProvider.state).state = const AddNewUserState.sucess();

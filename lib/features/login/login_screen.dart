@@ -1,24 +1,19 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:simple_inventory/core/loading_screen.dart';
 
-
 import '../../core/constants.dart';
 import '../../core/widgets/primary_button.dart';
 import '../../providers/auth_provider.dart';
 import '../../theme/palette.dart';
-
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-   
     // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
     return ref.watch(authProvider).maybeWhen(orElse: () {
@@ -37,8 +32,9 @@ class AuthenticationBody extends HookConsumerWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final emailController = useTextEditingController(text: '');
     final passwordController = useTextEditingController(text: '');
+    final focus = useFocusNode();
     return Container(
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -87,6 +83,8 @@ class AuthenticationBody extends HookConsumerWidget {
                             child: TextFormField(
                               key: ValueKey('emailFormField'),
                               controller: emailController,
+                               textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: const InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.auto,
                                 labelText: 'Email',
@@ -118,6 +116,8 @@ class AuthenticationBody extends HookConsumerWidget {
                             child: TextFormField(
                               key: ValueKey('passwordFormField'),
                               controller: passwordController,
+                              textInputAction: TextInputAction.done,
+                              keyboardType: TextInputType.visiblePassword,
                               obscureText: true,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.auto,

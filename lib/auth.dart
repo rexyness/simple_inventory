@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:simple_inventory/features/home/home.dart';
@@ -14,7 +13,7 @@ class AuthWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    FlutterNativeSplash.remove();
+    // FlutterNativeSplash.remove();
     ref.listen<AuthState>(
       authProvider,
       (_, authState) => authState.maybeWhen(
@@ -34,6 +33,7 @@ class AuthWidget extends ConsumerWidget {
         authenticated: (name, userRole) {
           showTopSnackBar(
             context,
+            
             CustomSnackBar.success(
               message: "Hello $name , Welcome Aboard !",
               backgroundColor: (Colors.blue[300])!,

@@ -69,7 +69,7 @@ class AuthProvider extends StateNotifier<AuthState> {
   Future<void> login(String email, String password) async {
     try {
       state = const AuthState.authenticating();
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
     } on FirebaseAuthException catch (e) {
       state = AuthState.failed(reason: e.message ?? 'something went wrong');
     }
