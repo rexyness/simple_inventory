@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_inventory/core/constants.dart';
 import 'package:simple_inventory/core/widgets/glass_box.dart';
-import 'package:simple_inventory/features/home/manage_users/manage_users.dart';
 import 'package:simple_inventory/providers/auth_provider.dart';
 import 'package:simple_inventory/theme/palette.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -42,11 +42,7 @@ class AdminScreen extends ConsumerWidget {
               children: [
                 GlassBox(
                   onTap: () async {
-                    await Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => const ManageUsers(),
-                      ),
-                    );
+                    GoRouter.of(context).push('/user-managment');
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -63,15 +59,12 @@ class AdminScreen extends ConsumerWidget {
                   ),
                 ),
                 GlassBox(
-                  onTap: () async {
-                    showTopSnackBar(
-                      context,
-                      const CustomSnackBar.error(
-                        message: 'This feature is not implemented yet.',
-                      ),
-                    );
-                    return;
-                  },
+                  onTap: () => showTopSnackBar(
+                    context,
+                    const CustomSnackBar.error(
+                      message: 'This feature is not implemented yet.',
+                    ),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

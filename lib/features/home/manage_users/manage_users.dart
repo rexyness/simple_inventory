@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:simple_inventory/core/loading_screen.dart';
 import 'package:simple_inventory/core/widgets/scaffold_gradient.dart';
@@ -31,7 +32,6 @@ class ManageUsers extends HookConsumerWidget {
             CustomSnackBar.error(
               message: reason,
             ),
-            
           );
           return;
         },
@@ -51,11 +51,8 @@ class ManageUsers extends HookConsumerWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            await Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) => const AddUser(),
-              ),
-            );
+            
+            GoRouter.of(context).push('/user-managment/add-user');
           },
           child: const Icon(Icons.add),
         ),

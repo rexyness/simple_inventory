@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:simple_inventory/core/loading_screen.dart';
 import 'package:simple_inventory/features/home/admin_screen.dart';
 import 'package:simple_inventory/features/home/staff_screen.dart';
 import 'package:simple_inventory/features/home/supervisor_screen.dart';
-import 'package:simple_inventory/providers/auth_provider.dart';
 import 'package:simple_inventory/providers/home_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
-  final String name;
-  final role userRole;
   const HomeScreen({
     Key? key,
-    required this.name,
-    required this.userRole,
   }) : super(key: key);
 
   @override
@@ -24,9 +20,7 @@ class HomeScreen extends ConsumerWidget {
     }, staff: () {
       return const StaffScreen();
     }, none: () {
-      return const Scaffold(
-        body: Center(child: Text('Account is set to nonae')),
-      );
+      return const LoadingScreen();
     }); //
   }
 }
